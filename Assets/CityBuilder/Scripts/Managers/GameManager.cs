@@ -2,7 +2,6 @@ using System;
 using SVS;
 using UnityEngine;
 
-[RequireComponent(typeof(RoadManager),typeof(PlacementManager),typeof(InputManager))]
 public class GameManager : MonoBehaviour
 {
    public CameraMovement cameraMovement;

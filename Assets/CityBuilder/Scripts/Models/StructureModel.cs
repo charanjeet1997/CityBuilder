@@ -10,7 +10,7 @@ public class StructureModel : MonoBehaviour
         if (structure == null)
         {
             structure = Instantiate(model, transform);
-            yHeight = structure.transform.localScale.y;
+            yHeight = structure.transform.localPosition.y;
         }
     }
 

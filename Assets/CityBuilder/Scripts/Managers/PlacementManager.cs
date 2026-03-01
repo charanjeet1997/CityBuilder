@@ -39,7 +39,7 @@ public class PlacementManager : MonoBehaviour
     private StructureModel CreateNewStructureModel(Vector3Int position, GameObject placementObject, CellType cellType)
     {
         GameObject structure = new GameObject(cellType.ToString());
-        structure.transform.parent = placementObject.transform;
+        structure.transform.parent = transform;
         structure.transform.localPosition = position;
         StructureModel structureModel = structure.AddComponent<StructureModel>();
         structureModel.CreateModel(placementObject);
@@ -57,5 +57,16 @@ public class PlacementManager : MonoBehaviour
     public CellType[] GetNeighbourTypeFor(Vector3Int position)
     {
         return placementGrid.GetAllAdjacentCellTypes(position.x, position.z);
+    }
+
+    public List<Vector3Int> GetNeighbourTypeFor(Vector3Int roadPos, CellType cellType)
+    {
+        var neighbourPoints = placementGrid.GetAdjacentCellsOfType(roadPos.x, roadPos.z, cellType);
+        List<Vector3Int> neighbours = new List<Vector3Int>();
+        foreach (var point in neighbourPoints)
+        {
+            neighbours.Add(new Vector3Int(point.X,0,point.Y));
+        }
+        return neighbours;
     }
 }

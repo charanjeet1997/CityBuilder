@@ -41,7 +41,6 @@ public class InputManager : MonoBehaviour
         if (mainCamera == null)
             return null;
         Vector3 mousePos = mousePosition;
-        mousePos.z = mainCamera.nearClipPlane;
         Ray ray = mainCamera.ScreenPointToRay(mousePos);
         RaycastHit hit;
 

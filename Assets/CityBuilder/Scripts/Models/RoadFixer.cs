@@ -77,10 +77,17 @@ public class RoadFixer : MonoBehaviour
 
     private bool CreateStraightRoad(PlacementManager placementManager, CellType[] result, Vector3Int position)
     {
-        if (result[1] == CellType.Road && result[2] == CellType.Road && result[3] == CellType.Road)
+        if (result[0] == CellType.Road && result[2] == CellType.Road)
         {
-            placementManager.ModifyPlacedStructureModel(position,threeWay,Quaternion.identity);
+            placementManager.ModifyPlacedStructureModel(position,roadStraight,Quaternion.identity);
+            return true;
         }
+        if (result[1] == CellType.Road && result[3] == CellType.Road)
+        {
+            placementManager.ModifyPlacedStructureModel(position,roadStraight,Quaternion.Euler(0,90,0));
+            return true;
+        }
+        return  false;
     }
 
     private void CreateDeadEnd(PlacementManager placementManager, CellType[] result, Vector3Int position)

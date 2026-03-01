@@ -7,7 +7,9 @@ public class RoadManager : MonoBehaviour
     [SerializeField] private RoadFixer roadFixer;
     private List<Vector3Int> temporaryPlacementPositions = new();
     private List<Vector3Int> roadPositionsToBeChecked = new();
-    public GameObject roadStraight;
+
+    private Vector3Int startPos;
+    private bool placementMode = false;
 
     public void PlaceRoad(Vector3Int position)
     {
@@ -17,8 +19,9 @@ public class RoadManager : MonoBehaviour
         if (!placementManager.CheckIfPositionIsFree(position))
             return;
         temporaryPlacementPositions.Clear();
+        roadPositionsToBeChecked.Clear();
         temporaryPlacementPositions.Add(position);
-        placementManager.PlaceTemporaryStructure(position, roadStraight, CellType.Road);
+        placementManager.PlaceTemporaryStructure(position, roadFixer.deadEnd, CellType.Road);
         FixRoadPrefabs();
     }
 
